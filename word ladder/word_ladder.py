@@ -25,10 +25,9 @@ def word_ladder(beginning_word, ending_word, words):
     
 def one_letter_diff_word(beginning_word, words, compared_words):
     updated_words = []
-    for word in words:
-        if word in compared_words:
-            continue
-        
+    filtered_words = [word for word in words if word not in compared_words]
+    
+    for word in filtered_words:        
         different_letters = 0
         for char in range(len(word)):
             if beginning_word[char] != word[char]:
