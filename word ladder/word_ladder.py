@@ -6,25 +6,20 @@ def word_ladder(beginning_word, ending_word, words):
         return 0
     
     transformations = 0
-    compared_words = []
+    compared_words = set({})
+    queue = [(beginning_word, transformations)]
     
-    while True:
-         
-        oldw = one_letter_diff_word(beginning_word, words, compared_words)
-
-        for word in oldw:
+    while queue:
+        
+        current_word, transformations = queue.pop(0)
             
-            if word not in compared_words:
-                beginning_word = word
-                compared_words.append(beginning_word)
-                transformations+=1
-                break  
-            
-        if beginning_word == ending_word:
+        if current_word == ending_word:
             return transformations
-              
-        if not oldw:
-            return 0
+
+        for word in one_letter_diff_word(current_word, words, compared_words):            
+            if word not in compared_words:
+                compared_words.add(word)
+                queue.append((word, transformations+1))
                     
     
     
