@@ -20,11 +20,11 @@ class test_word_ladder(unittest.TestCase):
         
     def test_four(self):
         transformations = wl("hit", "hit", {"hit"})
-        self.assertEqual(transformations, 1)
+        self.assertEqual(transformations, 0)
         
     def test_five(self):
-        transformations = wl("grape", "crate", {"grape", "graph", "crape", "crate"})
-        self.assertEqual(transformations, 3)
+        transformations = wl("grape", "crate", { "graph", "crape", "crate"})
+        self.assertEqual(transformations, 2)
         
     def test_six(self):
         transformations = wl("hit", "cog", {"hot", "dot", "dog", "cog"})
